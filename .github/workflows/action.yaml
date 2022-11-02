@@ -20,5 +20,13 @@ jobs:
         run: composer validate --strict
       - name: install composer dependencies
         run: composer install
+
+      - name: Create Database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
       - name: Running Unit Test
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
         run: vendor/bin/phpunit  --testsuite Category_Test
