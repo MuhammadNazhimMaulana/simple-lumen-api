@@ -2,6 +2,28 @@
 
 class CategoryTest extends TestCase
 {
+    
+    /**
+     * /category [POST]
+     */
+    public function testShouldCreateCategory(){
+        
+        $parameters = [
+            'name' => 'Kesehatan',
+            'slug' => 'kesehatan',
+        ];
+        
+        $this->post("api/category", $parameters, []);
+        $this->seeStatusCode(200);
+        $this->seeJsonStructure([
+            'name',
+            'slug',
+            'created_at',
+            'updated_at'
+        ]);
+        
+    }
+    
     /**
      * /category [GET]
      */
@@ -17,7 +39,6 @@ class CategoryTest extends TestCase
                 'updated_at'
             ]
         ]);
-        
     }
 
     /**
@@ -32,30 +53,8 @@ class CategoryTest extends TestCase
             'created_at',
             'updated_at'
         ]);
-        
     }
 
-    /**
-     * /category [POST]
-     */
-    public function testShouldCreateCategory(){
-
-        $parameters = [
-            'name' => 'Kesehatan',
-            'slug' => 'kesehatan',
-        ];
-
-        $this->post("api/category", $parameters, []);
-        $this->seeStatusCode(200);
-        $this->seeJsonStructure([
-            'name',
-            'slug',
-            'created_at',
-            'updated_at'
-        ]);
-        
-    }
-    
     /**
      * /category/id [PUT]
      */
