@@ -20,13 +20,3 @@ jobs:
         run: composer validate --strict
       - name: install composer dependencies
         run: composer install
-        
-      - name: Create Database
-        run: |
-          mkdir -p database
-          touch database/database.sqlite
-      - name: Running App
-        env:
-          DB_CONNECTION: sqlite
-          DB_DATABASE: database/database.sqlite
-        run: php -S localhost:8000 -t public
