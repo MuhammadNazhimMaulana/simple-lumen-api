@@ -20,3 +20,5 @@ jobs:
         run: composer validate --strict
       - name: install composer dependencies
         run: composer install
+      - name: Running Unit Test
+        run: vendor/bin/phpunit  --testsuite Category_Test
