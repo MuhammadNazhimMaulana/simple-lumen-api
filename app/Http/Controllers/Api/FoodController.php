@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Food;
+use Illuminate\Support\Facades\Storage;
 
 class FoodController extends Controller
 {
+    const DEFAULT_PATH = 'foods';
+
     public function index()
     {
         $data = Food::all();
@@ -34,12 +37,37 @@ class FoodController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:foods',
             'category_id' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'gambar' => 'image|mimes:jpg,jpeg,png'
         ]);
 
-        $Food = Food::create($request->all());
+        if ($request->hasFile('gambar')) {
 
-        return response()->json($Food);
+            // Getting File
+            $file = $request->file('gambar');
+
+            //Custom Name
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+
+            // Path
+            $filepath = self::DEFAULT_PATH . '/' . $filename;
+
+            //Upload Using s3
+            Storage::disk('s3')->put($filepath, file_get_contents($file));
+
+            // Image Url
+            $url = Storage::disk('s3')->url($filepath);
+        }
+        
+        // Creating Food
+        $food = Food::create([
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+            'description' => $request->description,
+            'gambar' => $url
+        ]);
+
+        return response()->json($food);
     }
 
     public function update(Request $request, $id)

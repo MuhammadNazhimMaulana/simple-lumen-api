@@ -18,6 +18,7 @@ class CreateFoodTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('name');
             $table->string('description');
+            $table->string('gambar');
             $table->timestamps();
         });
     }

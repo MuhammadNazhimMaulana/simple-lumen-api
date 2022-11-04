@@ -13,7 +13,7 @@ class Food extends Model
     protected $primaryKey = 'id';
 
     // Fillable
-    protected $fillable = ['name', 'description', 'category_id', 'created_at', 'updated_at'];
+    protected $fillable = ['name', 'description', 'category_id', 'gambar', 'created_at', 'updated_at'];
 
     // Relationship
     public function category()
