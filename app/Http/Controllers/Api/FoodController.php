@@ -112,7 +112,13 @@ class FoodController extends Controller
 
     public function delete($id)
     {   
-        Food::where('id', $id)->delete($id);
+        $food = Food::where('id', $id)->first();
+        
+        // Deleting File from s3
+        $this->deleteFile($food->path); 
+
+        // Deleting Data
+        $food->delete($id);
 
         return response("Data Berhasil dihapus");
     }
