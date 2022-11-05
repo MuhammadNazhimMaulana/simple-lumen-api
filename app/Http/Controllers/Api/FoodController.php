@@ -66,7 +66,8 @@ class FoodController extends Controller
             'name' => $request->name,
             'category_id' => $request->category_id,
             'description' => $request->description,
-            'gambar' => $url
+            'gambar' => $url,
+            'path' => $filepath,
         ]);
 
         return response()->json($food);
@@ -74,7 +75,37 @@ class FoodController extends Controller
 
     public function update(Request $request, $id)
     {   
-        Food::where('id', $id)->update($request->all());
+        $food = Food::where('id', $id)->first();
+
+        if ($request->hasFile('gambar')) {
+
+            // Deleting Old Picture
+            $this->deleteFile($food->path);
+
+            // Getting File
+            $file = $request->file('gambar');
+
+            //Custom Name
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+
+            // Path
+            $filepath = self::DEFAULT_PATH . '/' . $filename;
+
+            //Upload Using s3
+            $this->storeFile($filepath, file_get_contents($file));
+
+            // Image Url
+            $url = $this->showFile($filepath);
+        }
+
+        // Updating Food
+        $food->update([
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+            'description' => $request->description,
+            'gambar' => $url,
+            'path' => $filepath,
+        ]);
 
         return response("Data Berhasil diupdate");
     }
