@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Food;
-use Illuminate\Support\Facades\Storage;
+use App\Traits\FileTrait;
 
 class FoodController extends Controller
 {
     const DEFAULT_PATH = 'foods';
+
+    use FileTrait;
 
     public function index()
     {
@@ -53,10 +55,10 @@ class FoodController extends Controller
             $filepath = self::DEFAULT_PATH . '/' . $filename;
 
             //Upload Using s3
-            Storage::disk('s3')->put($filepath, file_get_contents($file));
+            $this->storeFile($filepath, file_get_contents($file));
 
             // Image Url
-            $url = Storage::disk('s3')->url($filepath);
+            $url = $this->showFile($filepath);
         }
         
         // Creating Food
