@@ -17,12 +17,13 @@ class FoodController extends Controller
     {
         $request = request()->all();
 
-        // Search Category
-        $searchCategory = $request['category'];
-
+        
         // Checking Request
         if(!empty($request))
         {
+            // Search Category
+            $searchCategory = $request['category'];
+            
             // Checking searched keyword
             $data = Food::whereHas('category', function($query) use ($searchCategory){
                 $query->where('slug', 'like', '%'.$searchCategory.'%');

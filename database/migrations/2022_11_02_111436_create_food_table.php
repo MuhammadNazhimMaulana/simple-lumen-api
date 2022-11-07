@@ -21,6 +21,8 @@ class CreateFoodTable extends Migration
             $table->string('gambar');
             $table->string('path');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
