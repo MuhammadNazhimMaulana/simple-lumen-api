@@ -10,7 +10,17 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $data = Category::all();
+        $request = request()->all();
+
+        // Checking Request
+        if(!empty($request))
+        {
+            // Checking searched keyword
+            $data = Category::where('slug', 'like', '%' . $request['search'] . '%' )->get();
+        }else{
+            // Getting all data
+            $data = Category::all();
+        }
 
         return response()->json($data);
     }
