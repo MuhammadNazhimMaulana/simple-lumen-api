@@ -15,7 +15,21 @@ class FoodController extends Controller
 
     public function index()
     {
-        $data = Food::all();
+        $request = request()->all();
+
+        $search = $request['search'];
+
+        // Checking Request
+        if(!empty($request))
+        {
+            // Checking searched keyword
+            $data = Food::whereHas('category', function($query) use ($search){
+                $query->where('slug', 'like', '%'.$search.'%');
+            })->get();
+        }else{
+            // Getting all data
+            $data = Food::all();
+        }
 
         // Using map to change returned value
         $new_data = $data->map(function ($item, $key) {
