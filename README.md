@@ -8,7 +8,7 @@ Setelah itu silakan jalankan migrasi dengan perintah berikut ini:
 php artisan migrate
 ```
 
-Jalankan development server dengan perintah berikut ini:
+Jalankan local development server dengan perintah berikut ini:
 
 ```
 php -S localhost:8000 -t public
