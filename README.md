@@ -1,4 +1,4 @@
-# Simple Food API
+# Food API
 
 Ini adalah sebuah API sederhana mengenai makanan yang dibangun dengan menggunakan Lumen. Siapkan sebuah database dan jangan lupa untuk mengubah .env.example menjadi .env dan sesuaikan konfigurasi databasenya.
 
