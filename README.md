@@ -1,8 +1,12 @@
 # Food API
 
-Ini adalah sebuah API sederhana mengenai makanan yang dibangun dengan menggunakan Lumen. Siapkan sebuah database dan jangan lupa untuk mengubah .env.example menjadi .env dan sesuaikan konfigurasi databasenya.
+Ini adalah sebuah API sederhana mengenai makanan yang dibangun dengan menggunakan Lumen. Siapkan sebuah database dan jangan lupa untuk menambahkan file .env dengan perintah berikut ini:
 
-Setelah itu silakan jalankan migrasi dengan perintah berikut ini:
+```
+cp .env.example menjadi .env
+```
+
+Setelah itu silakan lakukan penyesuaian database dan jalankan migrasi dengan perintah berikut ini:
 
 ```
 php artisan migrate
