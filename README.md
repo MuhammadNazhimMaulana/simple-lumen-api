@@ -1,6 +1,6 @@
 # Food API
 
-Sebuah API sederhana mengenai makanan yang dibangun dengan menggunakan Lumen. Siapkan sebuah database dan jangan lupa untuk menambahkan file .env dengan perintah berikut ini:
+Sebuah API sederhana mengenai makanan yang dibangun dengan menggunakan Lumen. Pertama, siapkan sebuah database dan jangan lupa untuk menambahkan file .env dengan perintah berikut ini:
 
 ```
 cp .env.example menjadi .env
