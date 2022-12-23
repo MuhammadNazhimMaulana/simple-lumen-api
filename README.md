@@ -17,3 +17,6 @@ Jalankan local development server dengan perintah berikut ini:
 ```
 php -S localhost:8000 -t public
 ```
+
+### Extra
+Sebagai tambahan, diberikan juga contoh penerapan dari sebuah package untuk membuat sebuah barcode atau qrcode. Untuk melihat hasilnya silakan kunjungi `url_aplikasi/qr`.
