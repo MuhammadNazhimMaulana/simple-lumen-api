@@ -17,6 +17,9 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+// Index
+$router->get('/qr', ['uses' => 'Api\QRController@index']);
+
 $router->group(['prefix' => 'api'], function() use ($router){
     // Category
     $router->group(['prefix' => 'category'], function () use ($router){

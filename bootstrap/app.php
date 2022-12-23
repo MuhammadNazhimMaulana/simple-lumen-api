@@ -99,11 +99,17 @@ $app->configure('app');
 |
 */
 
+$app->register(Milon\Barcode\BarcodeServiceProvider::class);
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
+// Alias
+// $app->alias('DNS1D', Milon\Barcode\Facades\DNS1DFacade::class); 
+// $app->alias('DNS2D', Milon\Barcode\Facades\DNS2DFacade::class); 
+
 /*
+
 |--------------------------------------------------------------------------
 | Load The Application Routes
 |--------------------------------------------------------------------------
