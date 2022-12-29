@@ -12,7 +12,7 @@ Setelah itu silakan lakukan penyesuaian database dan jalankan migrasi dengan per
 php artisan migrate
 ```
 
-Jalankan local development server dengan perintah berikut ini:
+Jalankan server lokal dengan perintah berikut ini:
 
 ```
 php -S localhost:8000 -t public
